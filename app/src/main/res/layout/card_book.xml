@@ -1,0 +1,73 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!-- The CardView needs to be wrapped to ensure spacing is applied correctly. -->
+
+    <android.support.v7.widget.CardView
+        style="@style/Card.Book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/BookPicture"
+                    style="@style/Card.Book.Picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/book2"/>
+
+                <TextView
+                    android:id="@+id/text_Title"
+                    style="@style/Card.Book.Title"
+                    android:text="@string/title_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/text_BorrowDay"
+                style="@style/Card.Book.Description"
+                android:text="@string/borrowDay_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_ReturnDay"
+                style="@style/Card.Book.Description"
+                android:text="@string/returnDay_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_BorrowedTime"
+                style="@style/Card.Book.Description"
+                android:text="@string/borrowedTimes_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button_Borrow"
+                android:text="@string/borrowButton"
+                style="@style/Card.Book.BorrowButton"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+
+</FrameLayout>

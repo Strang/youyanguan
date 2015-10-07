@@ -1,0 +1,26 @@
+<resources>
+
+    <color name="black">#ff000000</color>
+
+    <color name="gray_dark">#ff222222</color>
+    <color name="gray">#66000000</color>
+    <color name="gray_light">#11000000</color>
+
+    <color name="blue">#027FD4</color>
+    <color name="blue_primary">#3f51b5</color>
+    <color name="blue_gray">#607d8b</color>
+    <color name="blue_trans">#90027FD4</color>
+
+    <color name="red">#FFE64C3C</color>
+    <color name="red_trans">#ccAA2A1A</color>
+
+    <color name="white">#ffeeeeee</color>
+
+    <color name="course_red">#FFE64C3C</color>
+    <color name="course_blue">#FF0ED3F8</color>
+    <color name="course_green">#00a149</color>
+    <color name="course_yellow">#e3ea13</color>
+    <color name="course_purple">#5e5ab7</color>
+    <color name="course_orange">#f9ad1d</color>
+
+</resources>

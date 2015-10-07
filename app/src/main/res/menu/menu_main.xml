@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gusteauscuter.youyanguan.navigation_view">
+
+    <group android:id="@+id/groupDefault">
+
+        <group  android:id="@+id/groupHome">
+            <item android:id="@+id/action_feedback"
+                android:title="@string/action_feedback"
+                app:showAsAction="never" />
+            <item android:id="@+id/action_open_drawer"
+                android:title="@string/action_open_drawer"
+                app:showAsAction="never" />
+
+        </group>
+
+
+        <group  android:id="@+id/groupBook">
+            <item android:id="@+id/action_log_out"
+                android:title="@string/action_log_out"
+                app:showAsAction="never" />
+            <item android:id="@+id/action_refresh_book"
+                android:title="@string/action_refresh_book"
+                app:showAsAction="never"/>
+
+        </group>
+
+        <item android:id="@+id/action_add_course"
+            android:title="@string/action_add_course"
+            android:icon="@drawable/ic_add"
+            app:showAsAction="always" />
+
+    </group>
+
+</menu>

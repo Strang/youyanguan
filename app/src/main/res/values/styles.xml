@@ -1,0 +1,199 @@
+<resources>
+
+    <!-- Base application theme. -->
+
+
+    <style name="Theme.Base" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:windowAnimationStyle">@style/fade</item>
+    </style>
+
+    <style name="fade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/fade_out</item>
+    </style>
+
+    <style name="AppThemeTest" parent="Theme.Base">
+        <!-- Customize your theme here. -->
+        <!--导航栏底色-->
+        <!--状态栏底色-->
+        <!--导航栏上的标题颜色-->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!--Activity窗口的颜色-->
+        <item name="android:windowBackground">@android:color/darker_gray</item>
+        <!--按钮选中或者点击获得焦点后的颜色-->
+        <!--和 colorAccent相反，正常状态下按钮的颜色-->
+
+        <!--Button按钮正常状态颜色-->
+        <!--EditText 输入框中字体的颜色-->
+        <item name="android:editTextColor">@android:color/black</item>
+        <!--
+        <item name="android:activityCloseEnterAnimation">@android:anim/bounce_interpolator</item>
+        <item name="android:activityCloseExitAnimation">@android:anim/accelerate_decelerate_interpolator</item>
+        <item name="android:activityOpenEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@android:anim/fade_out</item>
+        -->
+    </style>
+    <style name="AppTheme" parent="Theme.Base">
+        <!-- Customize your theme here. -->
+        <!--导航栏底色-->
+        <!--状态栏底色-->
+        <item name="android:colorPrimaryDark">@color/gray_dark</item>
+        <!--导航栏上的标题颜色-->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!--Activity窗口的颜色-->
+        <item name="android:windowBackground">@android:color/white</item>
+        <!--EditText 输入框中字体的颜色-->
+        <item name="android:editTextColor">@android:color/black</item>
+    </style>
+
+
+
+    <!--style name="ActionbarTheme" parent="Theme.AppCompat.Light.DarkActionBar"!-->
+    <style name="ActionbarTheme" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:background">@color/gray_dark</item>
+        <item name="android:fitsSystemWindows">true</item>
+
+    </style>
+
+    <style name="drawerTheme" parent="ThemeOverlay.AppCompat.Dark">
+
+    </style>
+
+    <style name="headerTheme" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:paddingTop">32dp</item>
+
+    </style>
+
+    <style name="id_linkTextStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+
+    </style>
+
+    <style name="ContainerTheme">
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+
+    <!-- BookDetail -->
+
+    <style name="BookDetail.Title" parent="Widget">
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textIsSelectable">true</item>
+    </style>
+    <style name="BookDetail.Description" parent="Widget">
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
+    <style name="BookDetail.Bottom" parent="Widget">
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
+    <!-- 设置 -->
+    <style name="setting_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:layout_margin">15dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
+
+    <!--style name="AppTheme" parent="Theme.Sample" /-->
+    <!-- Widget styling -->
+
+    <style name="Widget" />
+
+    <style name="Theme.Button.Login" parent="Widget">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+
+    </style>
+
+    <style name="Widget.SampleContentContainer">
+        <item name="android:paddingTop">@dimen/vertical_page_margin</item>
+        <item name="android:paddingBottom">@dimen/vertical_page_margin</item>
+        <item name="android:paddingLeft">@dimen/horizontal_page_margin</item>
+        <item name="android:paddingRight">@dimen/horizontal_page_margin</item>
+    </style>
+
+
+
+
+    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">@style/ButtonBar</item>
+        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
+    </style>
+
+    <!-- Backward-compatible version of ?android:attr/buttonBarStyle -->
+    <style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style>
+
+    <!-- Backward-compatible version of ?android:attr/buttonBarButtonStyle -->
+    <style name="ButtonBarButton" />
+
+
+    <!-- Course -->
+    <style name="CourseDay">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="CourseDay.TextView">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="CourseDay.Grid">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:columnCount">3</item>
+    </style>
+
+    <style name="CourseDay.VerticalDivider">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <style name="CourseDay.HorizontalDivider">
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/gray</item>
+    </style>
+
+
+</resources>
