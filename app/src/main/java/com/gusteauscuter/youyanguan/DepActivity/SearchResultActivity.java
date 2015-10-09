@@ -46,6 +46,9 @@ public class SearchResultActivity extends AppCompatActivity {
     //带可借信息查询时，一个页面的第几次查询
     private int ithSearch = 1;
     private int page;
+    
+    //// TODO: 2015/10/9 从searchBookFragment传一个整形的常量给searchSN 
+    private int searchSN = BookSearchEngine.NORTH_CAMPUS; // 搜索南北两校为0，搜索北校为1，搜索南校为2
 
 
     private TextView mTotalNumber;
@@ -87,6 +90,7 @@ public class SearchResultActivity extends AppCompatActivity {
         bookToSearch=(String)intent.getSerializableExtra("bookToSearch");
         searchBookType=(String)intent.getSerializableExtra("searchBookType");
         isAllowedToBorrow=(boolean) intent.getSerializableExtra("isAllowedToBorrow");
+        //// TODO: 2015/10/9 在这里从intent中获取一个整型参数，赋值给searchSN 
 
         mSearchBookList=new ArrayList<>();
         mAdapter = new SearchBookAdapter() ;
@@ -252,7 +256,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
                     int numOfSearchesOnThisPage = engine.getNumOfSearchesOnThisPage(page, NUM_OF_BOOKS_PER_SEARCH);
                     if ((page <= numOfPages) && (ithSearch <= numOfSearchesOnThisPage)) {
-                        resultBookLists = engine.getBooksOnPageWithBorrowInfo(page, NUM_OF_BOOKS_PER_SEARCH, ithSearch);
+                        resultBookLists = engine.getBooksOnPageWithBorrowInfo(page, NUM_OF_BOOKS_PER_SEARCH, ithSearch, searchSN);
                     }
                     if (page <= numOfPages && ithSearch >= numOfSearchesOnThisPage) {
                         ithSearch = 1;

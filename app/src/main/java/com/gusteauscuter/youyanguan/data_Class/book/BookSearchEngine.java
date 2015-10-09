@@ -26,13 +26,19 @@ public class BookSearchEngine {
 	private int numOfBooksOnThisPage;
 	
 	private Document doc;
-	
+
+	//搜索哪一个校区的图书馆
+	public static final int BOTH_CAMPUS = 0;
+	public static final int NORTH_CAMPUS = 1;
+	public static final int SOUTH_CAMPUS = 2;
+
+
 	public int getNumOfSearchesOnThisPage(int pageNum, int numOfBooksPerSearch) {
 		numOfBooksOnThisPage = (pageNum < numOfPages) ? numOfBooksPerPage : numOfBooks % numOfBooksPerPage;
 		numOfSearchesOnThisPage = (int) Math.ceil((double) numOfBooksOnThisPage / numOfBooksPerSearch);
 		return numOfSearchesOnThisPage;
 	}
-	
+
 	public int getNumOfBooksPerPage() {
 		return numOfBooksPerPage;
 	}
@@ -135,5 +141,26 @@ public class BookSearchEngine {
 	
 	private String getQueryHtml(String query) {
 		return HttpUtil.getQueryHtml(BASE_URL, query);
+	}
+
+	public List<ResultBook> getBooksOnPageWithBorrowInfo(int pageNum, int numOfBooksPerSearch, int ithSearch, int searchSN) {
+		List<ResultBook> resultBookLists = new ArrayList<ResultBook>();
+		if (numOfBooks == 0 || pageNum > numOfPages) return null;
+		Elements elements = doc.getElementsByTag("tr");
+		elements.remove(0);
+		List<Element> elementLists = null;
+		int start = (ithSearch - 1) * numOfBooksPerSearch;
+		if (ithSearch < numOfSearchesOnThisPage) {
+			elementLists = elements.subList(start, start + numOfBooksPerSearch);
+		} else {
+			elementLists = elements.subList(start, numOfBooksOnThisPage);
+		}
+
+		for (Element element : elementLists) {
+			ResultBook book = new ResultBook();
+			book.getResultBookWithBorrowInfo(element, searchSN);
+			resultBookLists.add(book);
+		}
+		return resultBookLists;
 	}
 }

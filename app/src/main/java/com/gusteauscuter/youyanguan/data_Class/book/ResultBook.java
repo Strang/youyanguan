@@ -43,7 +43,38 @@ public class ResultBook implements Serializable {
 		getResultBookHelper(element);
 		isBorrowable = isBorrowableHelper();
 	}
-	
+
+	public void getResultBookWithBorrowInfo(Element element, int searchSN) {
+		getResultBookHelper(element);
+		isBorrowable = isBorrowableHelperSN(searchSN);
+	}
+
+
+	private boolean isBorrowableHelperSN(int searchSN) {
+		String detailLink = buildDetailLink(bookId);
+		String detailHtml = getHtml(detailLink);
+		Document detailDoc = Jsoup.parse(detailHtml);
+		List<LocationInformation> locationLists = getLocationInfo(detailDoc);
+		for (LocationInformation locInfo : locationLists) {
+			String location = locInfo.getLocation();
+			String detailLocation = locInfo.getDetailLocation();
+			String status = locInfo.getStatus();
+			if (!location.contains("停") && !detailLocation.contains("停") && status.contains("在馆")) {
+				if (searchSN == BookSearchEngine.BOTH_CAMPUS) {
+					return true;
+				} else if (searchSN == BookSearchEngine.NORTH_CAMPUS && (location.contains("北") || detailLocation.contains("北"))) {
+					return true;
+				} else if (searchSN == BookSearchEngine.SOUTH_CAMPUS && (location.contains("南") || detailLocation.contains("南"))) {
+					return true;
+				} else {
+					return true;
+				}
+
+			}
+		}
+
+		return false;
+	}
 	
 	private boolean isBorrowableHelper() {
 		
