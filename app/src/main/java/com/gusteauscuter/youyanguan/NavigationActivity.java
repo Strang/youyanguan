@@ -44,6 +44,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.update.BmobUpdateAgent;
+
 
 public class NavigationActivity extends AppCompatActivity  implements View.OnClickListener, View.OnTouchListener,
         GestureDetector.OnGestureListener {
@@ -82,6 +85,10 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         initData();
         initView();
         initEvents();
+        Bmob.initialize(this, "213c7ff4ff5c05bee43e1b5f803ee7cd");
+        //BmobUpdateAgent.initAppVersion(this);
+        BmobUpdateAgent.update(this);
+
     }
 
     /**

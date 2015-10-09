@@ -119,7 +119,6 @@ public class CourseFragment extends Fragment {
 
         if (mCourseList==null) {
             mCourseList = new ArrayList<>();
-        }
 
             mCourseList.add(new Course());
             mCourseList.add(new Course(5));
@@ -133,6 +132,7 @@ public class CourseFragment extends Fragment {
             mCourseList.add(new Course(4));
             mCourseList.add(new Course(3));
             mCourseList.add(new Course(7));
+        }
 
         /** @ WangCe
          * TODO  uncomment code below
