@@ -66,8 +66,6 @@ public class ResultBook implements Serializable {
 					return true;
 				} else if (searchSN == BookSearchEngine.SOUTH_CAMPUS && (location.contains("南") || detailLocation.contains("南"))) {
 					return true;
-				} else {
-					return true;
 				}
 
 			}

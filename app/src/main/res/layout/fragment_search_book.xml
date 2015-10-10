@@ -25,11 +25,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
+        <SearchView
             android:id="@+id/searchBookEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:iconifiedByDefault="false"
+            android:inputType="textFilter"
+            android:queryHint="请输入要查找的图书"
             android:textColor="@color/black"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
@@ -44,44 +46,53 @@
             android:layout_gravity="center_vertical"/>
 
     </LinearLayout>
-    <android.support.percent.PercentFrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:orientation="horizontal">
 
+        android:orientation="vertical">
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/gray"/>
-
-        <Spinner
-            android:layout_gravity="left|center"
-            android:id="@+id/spinner"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="40dp"
-            app:layout_widthPercent="45%" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <CheckBox
-            android:layout_gravity="right|center"
-            android:id="@+id/checkBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="显示可借状态"
-            android:layout_marginLeft="20dp"
-            app:layout_widthPercent="45%"
-            android:checked="true" />
+            <Spinner
+                android:layout_weight="6"
+                android:gravity="center"
+                android:id="@+id/spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp" />
+            <CheckBox
+                android:layout_weight="1"
+                android:id="@+id/SouthCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="南校"
+                android:checked="true" />
+            <CheckBox
+                android:layout_weight="1"
+                android:id="@+id/NorthCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="北校"
+                android:checked="true" />
 
+        </LinearLayout>
 
-    </android.support.percent.PercentFrameLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/gray"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/gray"/>
+    </LinearLayout>
 
 
     <TextView
