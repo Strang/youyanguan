@@ -99,7 +99,7 @@ public class searchBookFragment extends Fragment{
         mSouthCheckBox=(CheckBox)view.findViewById(R.id.SouthCheckBox);
         mNorthCheckBox=(CheckBox)view.findViewById(R.id.NorthCheckBox);
 
-        Button searchButton = (Button) view.findViewById(R.id.searchButton);
+//        Button searchButton = (Button) view.findViewById(R.id.searchButton);
         searchBookEditText = (SearchView) view.findViewById(R.id.searchBookEditText);
         searchBookEditText.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -117,13 +117,13 @@ public class searchBookFragment extends Fragment{
             }
         });
 
-        searchButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SearchBook();
-                    }
-                });
+//        searchButton.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        SearchBook();
+//                    }
+//                });
 
         return view;
     }
