@@ -11,11 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.gusteauscuter.youyanguan.DepActivity.SearchResultActivity;
 import com.gusteauscuter.youyanguan.R;
+import com.gusteauscuter.youyanguan.data_Class.book.Book;
+import com.gusteauscuter.youyanguan.data_Class.book.BookSearchEngine;
 import com.gusteauscuter.youyanguan.internet.connectivity.NetworkConnectivity;
 
 /**
@@ -23,24 +26,21 @@ import com.gusteauscuter.youyanguan.internet.connectivity.NetworkConnectivity;
  */
 public class searchBookFragment extends Fragment{
 
-    private EditText searchBookEditText;
+    private SearchView searchBookEditText;
     private Spinner searchBookTypeSpinner;
+    private CheckBox mSouthCheckBox;
+    private CheckBox mNorthCheckBox;
 
     private String bookToSearch;
     private String searchBookType="TITLE";
     private boolean isAllowedToBorrow;
-
-//    private TextView mEmptyInformation;
+    private int searchSN;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_search_book, container, false);
-
-
-//        mEmptyInformation=(TextView) view.findViewById(R.id.emptyInformation);
-//        mEmptyInformation.setVisibility(View.GONE);
 
         searchBookTypeSpinner=(Spinner) view.findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -90,41 +90,69 @@ public class searchBookFragment extends Fragment{
             }
         });
 
-        final CheckBox mCheckBox=(CheckBox)view.findViewById(R.id.checkBox);
+        mSouthCheckBox=(CheckBox)view.findViewById(R.id.SouthCheckBox);
+        mNorthCheckBox=(CheckBox)view.findViewById(R.id.NorthCheckBox);
 
         Button searchButton = (Button) view.findViewById(R.id.searchButton);
-        searchBookEditText = (EditText) view.findViewById(R.id.searchBookEditText);
+        searchBookEditText = (SearchView) view.findViewById(R.id.searchBookEditText);
+        searchBookEditText.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                SearchBook();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         searchButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        bookToSearch = searchBookEditText.getText().toString();
-
-                        if(!bookToSearch.equals("")) {
-
-                            boolean isConnected = NetworkConnectivity.isConnected(getActivity());
-                            if (isConnected) {
-                                //searchBookType;
-                                isAllowedToBorrow = mCheckBox.isChecked();
-
-                                Intent intent = new Intent(getActivity(), SearchResultActivity.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable("bookToSearch", bookToSearch);
-                                bundle.putSerializable("searchBookType", searchBookType);
-                                bundle.putSerializable("isAllowedToBorrow", isAllowedToBorrow);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
-
-                            } else {
-                                Toast.makeText(getActivity(), R.string.internet_not_connected, Toast.LENGTH_SHORT).show();
-                            }
-                        }else
-                            Toast.makeText(getActivity(), "请输入搜索内容", Toast.LENGTH_SHORT).show();
-
+                        SearchBook();
                     }
                 });
 
         return view;
+    }
+
+    private void SearchBook(){
+        bookToSearch = searchBookEditText.getQuery().toString();
+
+        if(!bookToSearch.equals("")) {
+
+            boolean isConnected = NetworkConnectivity.isConnected(getActivity());
+            if (isConnected) {
+                //searchBookType;
+                isAllowedToBorrow = true;
+                if (mNorthCheckBox.isChecked()&&mSouthCheckBox.isChecked()){
+                    searchSN= BookSearchEngine.BOTH_CAMPUS;
+                }else if(mNorthCheckBox.isChecked()){
+                    searchSN=BookSearchEngine.NORTH_CAMPUS;
+                }else if(mSouthCheckBox.isChecked()){
+                    searchSN= BookSearchEngine.SOUTH_CAMPUS;
+                }else{
+                    isAllowedToBorrow = false;
+                }
+
+                Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("bookToSearch", bookToSearch);
+                bundle.putSerializable("searchBookType", searchBookType);
+                bundle.putSerializable("isAllowedToBorrow", isAllowedToBorrow);
+                bundle.putSerializable("searchSN", searchSN);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            } else {
+                Toast.makeText(getActivity(), R.string.internet_not_connected, Toast.LENGTH_SHORT).show();
+            }
+        }else
+            Toast.makeText(getActivity(), "请输入搜索内容", Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -2,95 +2,105 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.gusteauscuter.youyanguan.content_fragment.bookFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     android:orientation="vertical">
 
     <TextView
         android:padding="@dimen/margin_large"
         android:text="华南理工大学图书馆\n馆藏查询"
         android:gravity="center"
+        android:layout_margin="20dp"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <View style="@style/HorizontalDivider"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/searchBookEditText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:textColor="@color/black"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:background="@color/blue_trans">
+
+            <SearchView
+                android:id="@+id/searchBookEditText"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:inputType="textFilter"
+                android:queryHint="请输入要查找的图书"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/searchButton"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textColor="@color/black"
-            android:text="查    询"
-            android:layout_gravity="center_vertical"/>
-
-    </LinearLayout>
-    <android.support.percent.PercentFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray"/>
-
-        <Spinner
-            android:layout_gravity="left|center"
-            android:id="@+id/spinner"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="40dp"
-            app:layout_widthPercent="45%" />
+            android:background="@color/blue"
+            android:text="查    询"/>
+    </LinearLayout>
+
+    <View style="@style/HorizontalDivider"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center_vertical">
 
         <CheckBox
-            android:layout_gravity="right|center"
-            android:id="@+id/checkBox"
-            android:layout_width="0dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/NorthCheckBox"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:text="显示可借状态"
-            android:layout_marginLeft="20dp"
-            app:layout_widthPercent="45%"
+            android:text="北校"
+            android:checked="true" />
+        <CheckBox
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/NorthCheckBox"
+            android:id="@+id/SouthCheckBox"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="南校"
             android:checked="true" />
 
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/emptyInformation"
+            android:text="@string/check_toKnow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
-    </android.support.percent.PercentFrameLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/gray"/>
-
-
-    <TextView
-        android:id="@+id/emptyInformation"
-        android:layout_marginTop="10dp"
-        android:text="@string/check_toKnow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+    <View style="@style/HorizontalDivider"/>
 
 </LinearLayout>
 

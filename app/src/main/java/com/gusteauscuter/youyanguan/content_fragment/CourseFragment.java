@@ -7,11 +7,16 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,10 +32,12 @@ import java.util.List;
 
 public class CourseFragment extends Fragment {
 
+    private GridLayout MondayRL;
+
     private GridLayout[] DayRL;
     private List<Course> mCourseList;
     private CourseDatabase courseDatabase;
-
+    private int width;
     public CourseFragment() {
         // Required empty public constructor
     }
@@ -43,7 +50,7 @@ public class CourseFragment extends Fragment {
 
         View view =inflater.inflate(R.layout.fragment_course, container, false);
 
-        GridLayout MondayRL=(GridLayout) view.findViewById(R.id.Day1);
+        MondayRL=(GridLayout) view.findViewById(R.id.Day1);
         GridLayout TuesdayRL=(GridLayout) view.findViewById(R.id.Day2);
         GridLayout WednesdayRL=(GridLayout) view.findViewById(R.id.Day3);
         GridLayout ThurdayRL=(GridLayout) view.findViewById(R.id.Day4);
@@ -54,14 +61,27 @@ public class CourseFragment extends Fragment {
         DayRL=new GridLayout[]{MondayRL,TuesdayRL,WednesdayRL,
                 ThurdayRL,FridayRL,SaturdayRL,SundayRL};
 
-        int color=0;
-        for(Course course:mCourseList){
 
-            if(course!=null){
-                color++;
-                CreatCourseCard(course,color);
+        ViewTreeObserver vto = MondayRL.getViewTreeObserver();
+        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                MondayRL.getViewTreeObserver().removeOnPreDrawListener(this);
+                width=MondayRL.getWidth();
+                /**
+                 * 放在内部才能获取width
+                 */
+                int color=0;
+                for(Course course:mCourseList){
+
+                    if(course!=null){
+                        color++;
+                        CreatCourseCard(course,color);
+                    }
+                }
+                return true;
             }
-        }
+        });
 
         return view;
     }
@@ -79,7 +99,6 @@ public class CourseFragment extends Fragment {
         ((TextView)view.findViewById(R.id.time)).setText(course.getTimeAndPositions().getTime());
         CardView cardCourse=(CardView) view.findViewById(R.id.CardCourse);
 
-//        view.setMinimumWidth(dip2px(getActivity(), 40 * (color % 4)));
         cardCourse.setCardBackgroundColor(colors[color % 7]);
 //        为课程View设置点击的监听器
 
@@ -87,6 +106,10 @@ public class CourseFragment extends Fragment {
         cardCourse.setOnClickListener(new OnClickCourseListener());
 
         DayRL[course.getTimeAndPositions().getWeekday()-1].addView(view);
+
+        GridLayout.LayoutParams layoutParams =(GridLayout.LayoutParams) view.getLayoutParams();
+        layoutParams.width =(int) (width* 0.33);
+        view.setLayoutParams(layoutParams);
 
     }
 
@@ -119,7 +142,6 @@ public class CourseFragment extends Fragment {
 
         if (mCourseList==null) {
             mCourseList = new ArrayList<>();
-        }
 
             mCourseList.add(new Course());
             mCourseList.add(new Course(5));
@@ -133,6 +155,7 @@ public class CourseFragment extends Fragment {
             mCourseList.add(new Course(4));
             mCourseList.add(new Course(3));
             mCourseList.add(new Course(7));
+        }
 
         /** @ WangCe
          * TODO  uncomment code below
@@ -184,20 +207,5 @@ public class CourseFragment extends Fragment {
             Color.rgb(0x3b,0x92,0xbc),
             Color.rgb(0xcc,0xcc,0xcc)
     };
-
-    public static int dip2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
-
-    /**
-     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
-     */
-    public static int px2dip(Context context, float pxValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
-    }
-
-
 
 }

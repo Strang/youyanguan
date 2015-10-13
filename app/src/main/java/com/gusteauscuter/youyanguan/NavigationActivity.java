@@ -44,6 +44,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.update.BmobUpdateAgent;
+
 
 public class NavigationActivity extends AppCompatActivity  implements View.OnClickListener, View.OnTouchListener,
         GestureDetector.OnGestureListener {
@@ -51,15 +54,15 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private ActionBar mActionBar=null;
-    private userLogin mUserLogin=new userLogin();
+    private userLogin mUserLogin;
     private FrameLayout mContentFramelayout;
 
-    private bookFragment mBookFragment=new bookFragment();
-    private CourseFragment mCourseFragment =new CourseFragment();
-    private homeFragment mHomeFragment=new homeFragment();
-    private settingFragment mSettingFragment =new settingFragment();
-    private loginFragment mLoginFragment= new loginFragment();
-    private searchBookFragment mSearchBookFragment=new searchBookFragment();
+    private bookFragment mBookFragment;
+    private CourseFragment mCourseFragment;
+    private homeFragment mHomeFragment;
+    private settingFragment mSettingFragment;
+    private loginFragment mLoginFragment;
+    private searchBookFragment mSearchBookFragment;
 
     private List<Book> mBookList =new ArrayList<>();
     private List<Course> mCourseList =new ArrayList<>();
@@ -82,6 +85,9 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         initData();
         initView();
         initEvents();
+        Bmob.initialize(this, "213c7ff4ff5c05bee43e1b5f803ee7cd");
+        //BmobUpdateAgent.initAppVersion(this);
+        BmobUpdateAgent.update(this);
     }
 
     /**
@@ -112,7 +118,6 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         mActionBar = getSupportActionBar();
         mActionBar.setDisplayHomeAsUpEnabled(true);
         mActionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-
         setupDrawerContent(mNavigationView);
 
         mGestureDetector = new GestureDetector(this);
@@ -128,9 +133,9 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
 
 
     private void JumpToHomeFragment() {
-
+        if (mHomeFragment==null)
+            mHomeFragment=new homeFragment();
         mActionBar.setTitle(R.string.nav_home);
-
         FragmentManager mFragmentManager = getFragmentManager();
         FragmentTransaction mTransaction = mFragmentManager.beginTransaction();
         mTransaction.replace(R.id.container_frame, mHomeFragment);
@@ -146,6 +151,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
     }
 
     private void JumpToCourseFragment(){
+        if(mCourseFragment==null)
+            mCourseFragment=new CourseFragment();
         mActionBar.setTitle(R.string.nav_course);
         FragmentManager mFragmentManager = getFragmentManager();
         FragmentTransaction mTransaction = mFragmentManager.beginTransaction();
@@ -164,7 +171,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
     public void JumpToBookFragment(){
 
         if (mUserLogin.IsLogined()){
-
+            if (mBookFragment==null)
+                mBookFragment=new bookFragment();
             mActionBar.setTitle(R.string.nav_library);
             FragmentManager mFragmentManager = getFragmentManager();
             FragmentTransaction mTransaction = mFragmentManager.beginTransaction();
@@ -178,14 +186,13 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
                 mMenu.findItem(R.id.action_refresh_book).setVisible(true);
             }
         } else{
-
             JumpToLoginFragment();
-
         }
     }
 
     private void JumpToLoginFragment(){
-
+        if(mLoginFragment==null)
+            mLoginFragment=new loginFragment();
         mActionBar.setTitle(R.string.login_library);
         FragmentManager mFragmentManager = getFragmentManager();
         FragmentTransaction mTransaction = mFragmentManager.beginTransaction();
@@ -202,6 +209,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
     }
 
     private void JumpToSearchBookFragment(){
+        if(mSearchBookFragment==null)
+            mSearchBookFragment=new searchBookFragment();
         mActionBar.setTitle(R.string.nav_search_book);
         FragmentManager mFragmentManager = getFragmentManager();
         FragmentTransaction mTransaction = mFragmentManager.beginTransaction();
@@ -218,7 +227,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
     }
 
     private void JumpToSettingFragment(){
-
+        if(mSettingFragment==null)
+            mSettingFragment=new settingFragment();
         mActionBar.setTitle(R.string.nav_setting);
         FragmentManager mFragmentManager = getFragmentManager();
         FragmentTransaction mTransaction = mFragmentManager.beginTransaction();

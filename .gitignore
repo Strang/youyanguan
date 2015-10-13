@@ -25,6 +25,15 @@ proguard/
 # Log Files
 *.log
 
+# Eclipse project files
+.classpath
+.project
+
+# Intellij project files
+*.iws
+.idea/workspace.xml
+.idea/tasks.xml
+
 # =========================
 # Operating System Files
 # =========================
@@ -71,3 +80,18 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+# IDEA
+*.iml
+.idea/
+.idea/.name
+.idea/encodings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/libraries
