@@ -94,10 +94,7 @@
 
 
     <string name="check_toKnow">
-        【注】
-        \n勾选“南校”或“北校”
-        \n彩色图书即为在馆可借
-        \n但加载速度将因此有所降低</string>
+        勾选“南校”或“北校”\n彩色图书即为在馆可借\n但加载速度将因此有所降低</string>
     <!--    system information   -->
     <string name="internet_not_connected">网络连接失败，请检查设置！</string>
     <string name="exit_hint">再按一次，退出油盐罐儿！</string>

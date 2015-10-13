@@ -36,17 +36,11 @@ public class searchBookFragment extends Fragment{
     private boolean isAllowedToBorrow;
     private int searchSN;
 
-//    private TextView mEmptyInformation;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_search_book, container, false);
-
-
-//        mEmptyInformation=(TextView) view.findViewById(R.id.emptyInformation);
-//        mEmptyInformation.setVisibility(View.GONE);
 
         searchBookTypeSpinner=(Spinner) view.findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -99,31 +93,29 @@ public class searchBookFragment extends Fragment{
         mSouthCheckBox=(CheckBox)view.findViewById(R.id.SouthCheckBox);
         mNorthCheckBox=(CheckBox)view.findViewById(R.id.NorthCheckBox);
 
-//        Button searchButton = (Button) view.findViewById(R.id.searchButton);
+        Button searchButton = (Button) view.findViewById(R.id.searchButton);
         searchBookEditText = (SearchView) view.findViewById(R.id.searchBookEditText);
         searchBookEditText.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
                 SearchBook();
-
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 return false;
             }
         });
 
-//        searchButton.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        SearchBook();
-//                    }
-//                });
+        searchButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SearchBook();
+                    }
+                });
 
         return view;
     }
