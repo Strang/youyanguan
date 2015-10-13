@@ -83,7 +83,7 @@ public class bookFragment extends Fragment {
     }
 
     /* @ WangCe
-    * TODO  deal with dataChange with the "NavigationActivity"
+    * TO  deal with dataChange with the "NavigationActivity"
     * such as UserLogin, BookList if they are already existed
     * so don't have to get data again
     * */
@@ -175,7 +175,7 @@ public class bookFragment extends Fragment {
                 }
             });
 
-            // TODO 设置Book对应属性
+            // TO 设置Book对应属性
             String name=mBookList.get(position).getTitle();
             String borrowDay="借阅:"+mBookList.get(position).getBorrowDay();
             String returnDay="归还:"+mBookList.get(position).getReturnDay();

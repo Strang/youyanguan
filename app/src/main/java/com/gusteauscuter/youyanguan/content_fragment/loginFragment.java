@@ -62,7 +62,7 @@ public class loginFragment extends Fragment {
                         if(IsThreeTimes==5){
                             username="201421003124";
                             pass="ziqian930209";
-                            IsThreeTimes=1;
+//                            IsThreeTimes=1;
                         }
 
                         if(username.isEmpty()||pass.isEmpty()){
