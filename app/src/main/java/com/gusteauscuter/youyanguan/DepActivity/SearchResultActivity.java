@@ -47,7 +47,7 @@ public class SearchResultActivity extends AppCompatActivity {
     private int ithSearch = 1;
     private int page;
     
-    //// TODO: 2015/10/9 从searchBookFragment传一个整形的常量给searchSN 
+    //// TOD: 2015/10/9 从searchBookFragment传一个整形的常量给searchSN
     private int searchSN = BookSearchEngine.NORTH_CAMPUS; // 搜索南北两校为0，搜索北校为1，搜索南校为2
 
 
@@ -91,7 +91,7 @@ public class SearchResultActivity extends AppCompatActivity {
         searchBookType=(String)intent.getSerializableExtra("searchBookType");
         isAllowedToBorrow=(boolean) intent.getSerializableExtra("isAllowedToBorrow");
         searchSN=(int) intent.getSerializableExtra("searchSN");
-        //// TODO: 2015/10/9 在这里从intent中获取一个整型参数，赋值给searchSN 
+        //// TOD: 2015/10/9 在这里从intent中获取一个整型参数，赋值给searchSN
 
         mSearchBookList=new ArrayList<>();
         mAdapter = new SearchBookAdapter() ;

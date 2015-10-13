@@ -22,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.view.MotionEvent;
 
@@ -354,7 +355,7 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
     public void SendEmailIntent(String fromWhere){
         Intent data=new Intent(Intent.ACTION_SENDTO);
         data.setData(Uri.parse("mailto:gusteauscuter@163.com"));
-        data.putExtra(Intent.EXTRA_SUBJECT, "【反馈建议/"+fromWhere+"】");
+        data.putExtra(Intent.EXTRA_SUBJECT, "【反馈建议/" + fromWhere + "】");
         data.putExtra(Intent.EXTRA_TEXT, "详细情况：\n");
         startActivity(data);
     }
@@ -482,50 +483,47 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
 /////////////////////////////////////////////////////////////////
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        // TODO Auto-generated method stub
+        // TOD Auto-generated method stub
         Log.i("touch", "touch");
         return mGestureDetector.onTouchEvent(event);
+
     }
     @Override
     public boolean onDown(MotionEvent e) {
-        // TODO Auto-generated method stub
+        // TOD Auto-generated method stub
         return false;
     }
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                            float velocityY) {
-        // TODO Auto-generated method stub
-        if (e1.getX()-e2.getX() > FLING_MIN_DISTANCE
-                && Math.abs(velocityX) > FLING_MIN_VELOCITY
-                && Math.abs(velocityX) >Math.abs(velocityY)) {
-            // Fling left
-//            Toast.makeText(this, "向左手势", Toast.LENGTH_SHORT).show();
-        } else if (e2.getX()-e1.getX() > FLING_MIN_DISTANCE
+        // TOD Auto-generated method stub
+        if (e2.getX()-e1.getX() > FLING_MIN_DISTANCE
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY
                 && Math.abs(velocityX) >Math.abs(velocityY)) {
             // Fling right
 //            Toast.makeText(this, "向右手势", Toast.LENGTH_SHORT).show();
             mDrawerLayout.openDrawer(GravityCompat.START);
+            return false;
         }
         return false;
     }
     @Override
     public void onLongPress(MotionEvent e) {
-        // TODO Auto-generated method stub
+        // TOD Auto-generated method stub
     }
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
                             float distanceY) {
-        // TODO Auto-generated method stub
+        // TOD Auto-generated method stub
         return false;
     }
     @Override
     public void onShowPress(MotionEvent e) {
-        // TODO Auto-generated method stub
+        // TOD Auto-generated method stub
     }
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
-        // TODO Auto-generated method stub
+        // TOD Auto-generated method stub
         return false;
     }
 

@@ -2,6 +2,7 @@ package com.gusteauscuter.youyanguan.content_fragment;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.gusteauscuter.youyanguan.DepActivity.SearchResultActivity;
 import com.gusteauscuter.youyanguan.R;
 import com.gusteauscuter.youyanguan.data_Class.book.Book;
 import com.gusteauscuter.youyanguan.data_Class.book.BookSearchEngine;
+import com.gusteauscuter.youyanguan.data_Class.userLogin;
 import com.gusteauscuter.youyanguan.internet.connectivity.NetworkConnectivity;
 
 /**
@@ -92,6 +94,7 @@ public class searchBookFragment extends Fragment{
 
         mSouthCheckBox=(CheckBox)view.findViewById(R.id.SouthCheckBox);
         mNorthCheckBox=(CheckBox)view.findViewById(R.id.NorthCheckBox);
+        initDataCheckState();
 
         Button searchButton = (Button) view.findViewById(R.id.searchButton);
         searchBookEditText = (SearchView) view.findViewById(R.id.searchBookEditText);
@@ -120,9 +123,25 @@ public class searchBookFragment extends Fragment{
         return view;
     }
 
-    private void SearchBook(){
-        bookToSearch = searchBookEditText.getQuery().toString();
+    public void initDataCheckState(){
 
+        SharedPreferences shareData = getActivity().getSharedPreferences("dataSearchCheckState", 0);
+        Boolean SouthChecked = shareData.getBoolean("South", false);
+        Boolean NorthChecked = shareData.getBoolean("North", true);
+        mSouthCheckBox.setChecked(SouthChecked);
+        mNorthCheckBox.setChecked(NorthChecked);
+    }
+
+    public void saveDataCheckState() {
+        SharedPreferences.Editor shareData =getActivity().getSharedPreferences("data",0).edit();
+        shareData.putBoolean("ISLOGINED",false);
+        shareData.commit();
+    }
+
+        private void SearchBook(){
+
+        saveDataCheckState();
+        bookToSearch = searchBookEditText.getQuery().toString();
         if(!bookToSearch.equals("")) {
 
             boolean isConnected = NetworkConnectivity.isConnected(getActivity());

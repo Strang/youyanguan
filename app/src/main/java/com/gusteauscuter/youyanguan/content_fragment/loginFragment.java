@@ -28,7 +28,7 @@ public class loginFragment extends Fragment {
 
     private ProgressBar mProgressBar;
 
-    private int IsThreeTimes=1;
+    private int IsFiveTimes=1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +59,7 @@ public class loginFragment extends Fragment {
                         String username = userNameEditText.getText().toString();
                         String pass = passEditText.getText().toString();
 
-                        if(IsThreeTimes==5){
+                        if(IsFiveTimes==5){
                             username="201421003124";
                             pass="ziqian930209";
 //                            IsThreeTimes=1;
@@ -68,7 +68,7 @@ public class loginFragment extends Fragment {
                         if(username.isEmpty()||pass.isEmpty()){
                             Toast.makeText(getActivity(), "请完整输入！", Toast.LENGTH_SHORT)
                                     .show();
-                            IsThreeTimes++;
+                            IsFiveTimes++;
                         }else {
                             AsyLoginLibrary myAsy = new AsyLoginLibrary();
                             myAsy.execute(username, pass);
