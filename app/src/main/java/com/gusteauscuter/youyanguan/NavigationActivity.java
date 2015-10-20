@@ -22,7 +22,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.view.MotionEvent;
 
@@ -53,7 +52,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         GestureDetector.OnGestureListener {
 
     private DrawerLayout mDrawerLayout;
-    private NavigationView mNavigationView;
+    private NavigationView mNavigationViewLeft;
+    private NavigationView mNavigationViewRight;
     private ActionBar mActionBar=null;
     private userLogin mUserLogin;
     private FrameLayout mContentFramelayout;
@@ -109,7 +109,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
 
         setContentView(R.layout.activity_navigation_view);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.layout_drawer);
-        mNavigationView = (NavigationView) findViewById(R.id.id_nv_menu);
+        mNavigationViewLeft = (NavigationView) findViewById(R.id.id_nv_menu);
+        mNavigationViewRight = (NavigationView) findViewById(R.id.id_nv_menu_right);
         mContentFramelayout = (FrameLayout) findViewById(R.id.container_frame);
 
         mContentFramelayout.setOnClickListener(this);
@@ -119,7 +120,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         mActionBar = getSupportActionBar();
         mActionBar.setDisplayHomeAsUpEnabled(true);
         mActionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        setupDrawerContent(mNavigationView);
+        setupDrawerContent(mNavigationViewLeft);
+        setupDrawerContent(mNavigationViewRight);
 
         mGestureDetector = new GestureDetector(this);
         FrameLayout touchArea = (FrameLayout) findViewById(R.id.container_frame);
@@ -127,11 +129,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         touchArea.setLongClickable(true);
 
         JumpToHomeFragment();
-//        JumpToBookFragment();
-//        JumpToSearchBookFragment();
 
     }
-
 
     private void JumpToHomeFragment() {
         if (mHomeFragment==null)
@@ -143,8 +142,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         mTransaction.commit();
 
         if (mMenu != null) {
-            mMenu.findItem(R.id.action_feedback).setVisible(true);
-            mMenu.findItem(R.id.action_open_drawer).setVisible(true);
+//            mMenu.findItem(R.id.action_feedback).setVisible(true);
+//            mMenu.findItem(R.id.action_open_drawer).setVisible(true);
             mMenu.findItem(R.id.action_log_out).setVisible(false);
             mMenu.findItem(R.id.action_refresh_book).setVisible(false);
         }
@@ -161,8 +160,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         mTransaction.commit();
 
         if (mMenu!=null) {
-            mMenu.findItem(R.id.action_feedback).setVisible(true);
-            mMenu.findItem(R.id.action_open_drawer).setVisible(true);
+//            mMenu.findItem(R.id.action_feedback).setVisible(true);
+//            mMenu.findItem(R.id.action_open_drawer).setVisible(true);
             mMenu.findItem(R.id.action_log_out).setVisible(false);
             mMenu.findItem(R.id.action_refresh_book).setVisible(false);
         }
@@ -181,8 +180,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
             mTransaction.commit();
 
             if (mMenu!=null) {
-                mMenu.findItem(R.id.action_feedback).setVisible(true);
-                mMenu.findItem(R.id.action_open_drawer).setVisible(true);
+//                mMenu.findItem(R.id.action_feedback).setVisible(true);
+//                mMenu.findItem(R.id.action_open_drawer).setVisible(true);
                 mMenu.findItem(R.id.action_log_out).setVisible(true);
                 mMenu.findItem(R.id.action_refresh_book).setVisible(true);
             }
@@ -201,8 +200,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         mTransaction.commit();
 
         if (mMenu!=null) {
-            mMenu.findItem(R.id.action_feedback).setVisible(true);
-            mMenu.findItem(R.id.action_open_drawer).setVisible(true);
+//            mMenu.findItem(R.id.action_feedback).setVisible(true);
+//            mMenu.findItem(R.id.action_open_drawer).setVisible(true);
             mMenu.findItem(R.id.action_log_out).setVisible(false);
             mMenu.findItem(R.id.action_refresh_book).setVisible(false);
         }
@@ -219,8 +218,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         mTransaction.commit();
 
         if (mMenu!=null) {
-            mMenu.findItem(R.id.action_feedback).setVisible(true);
-            mMenu.findItem(R.id.action_open_drawer).setVisible(true);
+//            mMenu.findItem(R.id.action_feedback).setVisible(true);
+//            mMenu.findItem(R.id.action_open_drawer).setVisible(true);
             mMenu.findItem(R.id.action_log_out).setVisible(false);
             mMenu.findItem(R.id.action_refresh_book).setVisible(false);
         }
@@ -237,8 +236,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         mTransaction.commit();
 
         if (mMenu!=null) {
-            mMenu.findItem(R.id.action_feedback).setVisible(false);
-            mMenu.findItem(R.id.action_open_drawer).setVisible(false);
+//            mMenu.findItem(R.id.action_feedback).setVisible(false);
+//            mMenu.findItem(R.id.action_open_drawer).setVisible(false);
             mMenu.findItem(R.id.action_log_out).setVisible(false);
             mMenu.findItem(R.id.action_refresh_book).setVisible(false);
         }
@@ -302,8 +301,8 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         /*  I don't know why it doesn't work --
         *  -->   mMenu.setGroupVisible(R.id.groupDefault,false);
         * */
-        mMenu.findItem(R.id.action_feedback).setVisible(true);
-        mMenu.findItem(R.id.action_open_drawer).setVisible(true);
+        mMenu.findItem(R.id.action_feedback).setVisible(false);
+        mMenu.findItem(R.id.action_open_drawer).setVisible(false);
         mMenu.findItem(R.id.action_log_out).setVisible(false);
         mMenu.findItem(R.id.action_refresh_book).setVisible(false);
         mMenu.findItem(R.id.action_add_course).setVisible(false);
@@ -503,6 +502,14 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
             // Fling right
 //            Toast.makeText(this, "向右手势", Toast.LENGTH_SHORT).show();
             mDrawerLayout.openDrawer(GravityCompat.START);
+            return false;
+        }
+        if (e1.getX()-e2.getX() > FLING_MIN_DISTANCE
+                && Math.abs(velocityX) > FLING_MIN_VELOCITY
+                && Math.abs(velocityX) >Math.abs(velocityY)) {
+            // Fling right
+//            Toast.makeText(this, "向右手势", Toast.LENGTH_SHORT).show();
+            mDrawerLayout.openDrawer(GravityCompat.END);
             return false;
         }
         return false;
