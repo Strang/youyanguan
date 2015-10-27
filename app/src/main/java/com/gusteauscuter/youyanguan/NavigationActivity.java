@@ -128,7 +128,7 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         touchArea.setOnTouchListener(this);
         touchArea.setLongClickable(true);
 
-        JumpToHomeFragment();
+        JumpToSearchBookFragment();
 
     }
 
@@ -263,9 +263,9 @@ public class NavigationActivity extends AppCompatActivity  implements View.OnCli
         // 导航栏动作，跳转到子页面
 
         arg=menuItem.toString();
-        if(menuItem.getItemId()==R.id.nav_home) {     //首页
-            JumpToHomeFragment();
-        }
+//        if(menuItem.getItemId()==R.id.nav_home) {     //首页
+//            JumpToHomeFragment();
+//        }
 
         if(menuItem.getItemId()==R.id.nav_library) {    //图书馆
             JumpToBookFragment();

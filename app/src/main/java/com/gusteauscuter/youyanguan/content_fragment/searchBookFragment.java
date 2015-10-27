@@ -125,7 +125,7 @@ public class searchBookFragment extends Fragment{
 
     public void initDataCheckState(){
 
-        SharedPreferences shareData = getActivity().getSharedPreferences("dataSearchCheckState", 0);
+        SharedPreferences shareData = getActivity().getSharedPreferences("data", 0);
         Boolean SouthChecked = shareData.getBoolean("South", false);
         Boolean NorthChecked = shareData.getBoolean("North", true);
         mSouthCheckBox.setChecked(SouthChecked);
@@ -134,6 +134,8 @@ public class searchBookFragment extends Fragment{
 
     public void saveDataCheckState() {
         SharedPreferences.Editor shareData =getActivity().getSharedPreferences("data",0).edit();
+        shareData.putBoolean("South",mSouthCheckBox.isChecked());
+        shareData.putBoolean("North",mNorthCheckBox.isChecked());
         shareData.putBoolean("ISLOGINED",false);
         shareData.commit();
     }

@@ -54,7 +54,6 @@
     <style name="ActionbarTheme" parent="ThemeOverlay.AppCompat.Dark">
         <item name="android:background">@color/gray_dark</item>
         <item name="android:fitsSystemWindows">true</item>
-
     </style>
 
     <style name="drawerTheme" parent="ThemeOverlay.AppCompat.Dark">

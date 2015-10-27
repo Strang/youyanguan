@@ -36,6 +36,12 @@
             android:paddingTop="5dp"
             android:background="@color/blue_trans">
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"/>
+
             <SearchView
                 android:id="@+id/searchBookEditText"
                 android:layout_weight="1"
@@ -47,12 +53,6 @@
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"/>
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"/>
 
         </LinearLayout>
 
