@@ -3,6 +3,10 @@ package com.gusteauscuter.youyanguan.data_Class.book;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.apache.commons.httpclient.ConnectionPoolTimeoutException;
+import org.apache.commons.httpclient.util.TimeoutController;
+import org.apache.http.conn.ConnectTimeoutException;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,6 +15,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 
 /**
@@ -90,6 +95,10 @@ public class HttpUtil {
                 }
 
             }
+//        } catch (ConnectionPoolTimeoutException e) {
+//            e.printStackTrace();
+//        } catch (SocketTimeoutException e) {
+//            e.printStackTrace();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {

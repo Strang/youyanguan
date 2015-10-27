@@ -22,6 +22,8 @@ import com.gusteauscuter.youyanguan.data_Class.book.ResultBook;
 import com.gusteauscuter.youyanguan.internet.connectivity.NetworkConnectivity;
 import com.gusteauscuter.youyanguan.view.ScrollListView;
 
+import org.apache.commons.httpclient.ConnectionPoolTimeoutException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -256,14 +258,26 @@ public class SearchResultActivity extends AppCompatActivity {
                 if (isAllowedToBorrow) {
 
                     int numOfSearchesOnThisPage = engine.getNumOfSearchesOnThisPage(page, NUM_OF_BOOKS_PER_SEARCH);
-                    if ((page <= numOfPages) && (ithSearch <= numOfSearchesOnThisPage)) {
-                        resultBookLists = engine.getBooksOnPageWithBorrowInfo(page, NUM_OF_BOOKS_PER_SEARCH, ithSearch, searchSN);
-                    }
-                    if (page <= numOfPages && ithSearch >= numOfSearchesOnThisPage) {
-                        ithSearch = 1;
-                        page++;
-                    } else if (ithSearch < numOfSearchesOnThisPage){
-                        ithSearch++;
+//                    if ((page <= numOfPages) && (ithSearch <= numOfSearchesOnThisPage)) {
+//                        resultBookLists = engine.getBooksOnPageWithBorrowInfo(page, NUM_OF_BOOKS_PER_SEARCH, ithSearch, searchSN);
+//                    }
+//                    if (page <= numOfPages && ithSearch >= numOfSearchesOnThisPage) {
+//                        ithSearch = 1;
+//                        page++;
+//                    } else if (ithSearch < numOfSearchesOnThisPage){
+//                        ithSearch++;
+//                    }
+
+                    if (page <= numOfPages) {
+                        resultBookLists = engine.getBooksOnPageWithBorrowInfo(page, NUM_OF_BOOKS_PER_SEARCH, ithSearch);
+                        if (resultBookLists != null) {
+                            if (ithSearch >= numOfSearchesOnThisPage) {
+                                ithSearch = 1;
+                                page++;
+                            } else {
+                                ithSearch++;
+                            }
+                        }
                     }
 
                 } else {
@@ -272,6 +286,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 }
 
             } catch (Exception e) {
+                //Toast.makeText(getApplication(), "服务器异常", Toast.LENGTH_SHORT).show();
 
                 e.printStackTrace();
             }
@@ -292,10 +307,10 @@ public class SearchResultActivity extends AppCompatActivity {
                     mAdapter.notifyDataSetChanged();
                     mListView.setTriggeredOnce(false);
 
-                } else if (page < numOfPages) {
-                    page++;
-                    ithSearch = 1;
-                    mListView.setTriggeredOnce(false);
+//                } else if (page < numOfPages) {
+//                    page++;
+//                    ithSearch = 1;
+//                    mListView.setTriggeredOnce(false);
 
                 } else if (page >= numOfPages) {
                     Toast.makeText(getApplication(), "全部图书加载完毕", Toast.LENGTH_SHORT).show();

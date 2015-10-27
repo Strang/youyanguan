@@ -2,6 +2,7 @@ package com.gusteauscuter.youyanguan.data_Class.book;
 
 
 
+import org.apache.commons.httpclient.ConnectionPoolTimeoutException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,6 +14,8 @@ import java.util.List;
 public class BookSearchEngine {
 	
 	private static final String BASE_URL = "http://202.38.232.10/opac/servlet/opac.go";
+	//private static final String BASE_URL = "http://202.38.232.10/opac/servlet/opac.go12345"; // 测试，此链接不存在
+
 //	private static final int START_PAGE_NUM = 1;
 	
 	private String searchContent;
@@ -34,7 +37,12 @@ public class BookSearchEngine {
 
 
 	public int getNumOfSearchesOnThisPage(int pageNum, int numOfBooksPerSearch) {
-		numOfBooksOnThisPage = (pageNum < numOfPages) ? numOfBooksPerPage : numOfBooks % numOfBooksPerPage;
+		if (pageNum < numOfPages) {
+			numOfBooksOnThisPage = numOfBooksPerPage;
+		} else if (pageNum == numOfPages) {
+			int remainder = numOfBooks % numOfBooksPerPage;
+			numOfBooksOnThisPage = (remainder == 0) ? numOfBooksPerPage : remainder;
+		}
 		numOfSearchesOnThisPage = (int) Math.ceil((double) numOfBooksOnThisPage / numOfBooksPerSearch);
 		return numOfSearchesOnThisPage;
 	}
@@ -140,7 +148,8 @@ public class BookSearchEngine {
 	}
 	
 	private String getQueryHtml(String query) {
-		return HttpUtil.getQueryHtml(BASE_URL, query);
+			return HttpUtil.getQueryHtml(BASE_URL, query);
+
 	}
 
 	public List<ResultBook> getBooksOnPageWithBorrowInfo(int pageNum, int numOfBooksPerSearch, int ithSearch, int searchSN) {
