@@ -152,7 +152,7 @@ public class searchBookFragment extends Fragment{
         private void SearchBook(){
 
         saveDataCheckState();
-        bookToSearch = searchBookEditText.getQuery().toString();
+        bookToSearch = searchBookEditText.getQuery().toString().replaceAll("\\s", "");
         if(!bookToSearch.equals("")) {
 
             boolean isConnected = NetworkConnectivity.isConnected(getActivity());
